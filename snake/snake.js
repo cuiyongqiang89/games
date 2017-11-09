@@ -28,7 +28,7 @@ Game.init=function(){
 }
 Game.start=function(){
 	if(Game.status=="init"){
-		Game.init();
+		window.reload;
 	}else if(Game.status=="pause"){
 		t=setInterval(Game.update,Game.speed);	
 	}
