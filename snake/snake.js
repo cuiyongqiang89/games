@@ -9,6 +9,7 @@ Game.size=20;
 Game.status="init";
 Game.score=0;
 Game.scoreHTML=document.getElementById("score");
+Game.speed=500;
 
 Game.draw=function(pos,size,color){
 	Game.context.fillStyle=color;	
@@ -23,13 +24,13 @@ Game.init=function(){
 	} 
 	food.init();
 	Game.draw(food.pos,Game.size,food.color);
-	t=setInterval(Game.update,500);	
+	t=setInterval(Game.update,Game.speed);	
 }
 Game.start=function(){
 	if(Game.status=="init"){
 		Game.init();
 	}else if(Game.status=="pause"){
-		t=setInterval(Game.update,500);	
+		t=setInterval(Game.update,Game.speed);	
 	}
 }
 Game.pause=function(){
@@ -48,6 +49,10 @@ Game.update=function(){
 		Game.scoreHTML.innerHTML=Game.score;
 	}
 	Game.draw(food.pos,Game.size,food.color)
+	if(Game.score>2){
+		Game.score=0;
+		Game.speed-=100;
+	}
 }
 
 Game.gameover=function(){
